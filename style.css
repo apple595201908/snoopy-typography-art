@@ -11,11 +11,13 @@
   --text-secondary: #78716c;
   --accent-red: #ef4444;
   --accent-gold: #f59e0b;
-  --panel-bg: rgba(255, 255, 255, 0.72);
-  --panel-border: rgba(226, 217, 204, 0.8);
+  --panel-bg: rgba(255, 255, 255, 0.76);
+  --panel-border: rgba(226, 217, 204, 0.85);
   --panel-shadow: 0 12px 36px -8px rgba(28, 25, 23, 0.08);
   --pill-active-bg: #1c1917;
   --pill-active-text: #fbf8f1;
+  --slider-track: #e2d9cc;
+  --slider-fill: #ef4444;
   --font-display: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", -apple-system, sans-serif;
   --font-serif: "Songti TC", "Noto Serif TC", "PMingLiU", serif;
 }
@@ -28,11 +30,13 @@
   --text-secondary: #94a3b8;
   --accent-red: #f43f5e;
   --accent-gold: #38bdf8;
-  --panel-bg: rgba(15, 23, 42, 0.75);
-  --panel-border: rgba(51, 65, 85, 0.8);
+  --panel-bg: rgba(15, 23, 42, 0.8);
+  --panel-border: rgba(51, 65, 85, 0.85);
   --panel-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.6);
   --pill-active-bg: #38bdf8;
   --pill-active-text: #090d16;
+  --slider-track: #334155;
+  --slider-fill: #38bdf8;
 }
 
 /* Theme 3: Risograph Duotone */
@@ -43,11 +47,13 @@
   --text-secondary: #ff2a6d;
   --accent-red: #ff2a6d;
   --accent-gold: #0056b3;
-  --panel-bg: rgba(255, 255, 255, 0.85);
-  --panel-border: rgba(255, 42, 109, 0.25);
+  --panel-bg: rgba(255, 255, 255, 0.88);
+  --panel-border: rgba(255, 42, 109, 0.28);
   --panel-shadow: 0 12px 36px -8px rgba(255, 42, 109, 0.12);
   --pill-active-bg: #ff2a6d;
   --pill-active-text: #ffffff;
+  --slider-track: #fbcfe8;
+  --slider-fill: #ff2a6d;
 }
 
 /* Theme 4: Imperial Ink & Gold */
@@ -58,11 +64,13 @@
   --text-secondary: #a16207;
   --accent-red: #b91c1c;
   --accent-gold: #d4af37;
-  --panel-bg: rgba(254, 252, 248, 0.85);
-  --panel-border: rgba(212, 175, 55, 0.35);
+  --panel-bg: rgba(254, 252, 248, 0.88);
+  --panel-border: rgba(212, 175, 55, 0.38);
   --panel-shadow: 0 12px 36px -8px rgba(180, 83, 9, 0.12);
   --pill-active-bg: #b91c1c;
   --pill-active-text: #f5efe6;
+  --slider-track: #e7e5e4;
+  --slider-fill: #b91c1c;
 }
 
 * {
@@ -107,7 +115,7 @@ html, body {
   opacity: 0.8;
 }
 
-/* Giant Background Watermark Stamp (Avant-Garde Typography) */
+/* Giant Background Watermark Stamp */
 .bg-watermark {
   position: absolute;
   top: 50%;
@@ -256,7 +264,10 @@ html, body {
   pointer-events: auto;
   max-width: 90%;
   transition: opacity 0.4s ease, transform 0.4s ease;
-  margin-top: -30px;
+  margin-top: -15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .artwork-badge {
@@ -266,42 +277,163 @@ html, body {
   letter-spacing: 0.15em;
   color: var(--text-secondary);
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .artwork-title {
-  font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+  font-size: clamp(1.35rem, 4.2vw, 2.1rem);
   font-weight: 900;
   letter-spacing: 0.06em;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .artwork-quote {
-  font-size: clamp(0.78rem, 2.8vw, 0.95rem);
+  font-size: clamp(0.76rem, 2.6vw, 0.92rem);
   color: var(--text-secondary);
   font-style: italic;
   font-family: var(--font-serif);
-  line-height: 1.4;
+  line-height: 1.35;
+  margin-bottom: 8px;
 }
 
-/* Gesture Interaction Pill Bar */
+/* Slow Evolution Controller Dock */
+.evolution-controller {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 6px 12px;
+  box-shadow: var(--panel-shadow);
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.evolution-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.evolution-status {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.evolution-speed-pills {
+  display: flex;
+  gap: 4px;
+}
+
+.speed-pill {
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.speed-pill.active {
+  background: var(--text-primary);
+  color: var(--bg-color);
+  border-color: var(--text-primary);
+}
+
+.evolution-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.evo-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  transition: transform 0.15s, background 0.2s;
+}
+
+.evo-btn:active {
+  transform: scale(0.88);
+}
+
+.evo-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Custom Styled Range Scrubber */
+#evolution-scrubber {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--slider-track);
+  outline: none;
+  cursor: pointer;
+}
+
+#evolution-scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--slider-fill);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s;
+}
+
+#evolution-scrubber::-webkit-slider-thumb:active {
+  transform: scale(1.25);
+}
+
+#evolution-scrubber::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--slider-fill);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Floating Gesture Hint Pill */
 .gesture-tip-pill {
   align-self: center;
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 20px;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--text-secondary);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   display: flex;
   align-items: center;
   gap: 8px;
   box-shadow: var(--panel-shadow);
   pointer-events: auto;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .gesture-tip-pill span.dot {
@@ -322,7 +454,7 @@ html, body {
 .bottom-dock {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   pointer-events: auto;
   padding: 0 10px 10px 10px;
 }
@@ -330,7 +462,7 @@ html, body {
 /* Horizontal Scrollable Poses Ribbon */
 .pose-nav-ribbon {
   display: flex;
-  gap: 8px;
+  gap: 7px;
   overflow-x: auto;
   padding: 4px 6px;
   scrollbar-width: none;
@@ -351,9 +483,9 @@ html, body {
   border: 1px solid var(--panel-border);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 8px 14px;
+  padding: 7px 13px;
   border-radius: 24px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-primary);
   cursor: pointer;
@@ -362,7 +494,7 @@ html, body {
 }
 
 .pose-chip .chip-num {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   opacity: 0.6;
   font-weight: 800;
 }
@@ -391,7 +523,7 @@ html, body {
   border: 1px solid var(--panel-border);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  padding: 6px 10px;
+  padding: 5px 10px;
   border-radius: 30px;
   box-shadow: var(--panel-shadow);
 }
@@ -411,7 +543,7 @@ html, body {
   color: var(--text-primary);
   font-size: 0.78rem;
   font-weight: 700;
-  padding: 8px 12px;
+  padding: 7px 12px;
   border-radius: 20px;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
@@ -449,8 +581,8 @@ html, body {
 /* Auto-Play Circular Progress Ring */
 .play-ring-container {
   position: relative;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -467,7 +599,7 @@ html, body {
   transition: stroke-dashoffset 0.1s linear;
 }
 
-/* Modal Popup (for Wallpaper Card Export) */
+/* Modal Popup */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -581,7 +713,6 @@ html, body {
   transform: scale(0.97);
 }
 
-/* Calligraphy Brush Mode Active Glow */
 body.brush-mode-active #canvas-stage {
   cursor: crosshair;
 }
@@ -595,18 +726,22 @@ body.brush-mode-active #canvas-stage {
     font-size: 0.6rem;
   }
   .artwork-meta-card {
-    margin-top: -15px;
+    margin-top: -10px;
+  }
+  .evolution-controller {
+    padding: 5px 10px;
+    max-width: 320px;
   }
   .pose-chip {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-  }
-  .pill-tool-btn {
-    padding: 6px 9px;
+    padding: 5px 11px;
     font-size: 0.72rem;
   }
+  .pill-tool-btn {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
   .gesture-tip-pill {
-    font-size: 0.66rem;
-    padding: 4px 10px;
+    font-size: 0.62rem;
+    padding: 3px 8px;
   }
 }
