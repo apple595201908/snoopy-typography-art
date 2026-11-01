@@ -331,9 +331,11 @@
     const pose = window.SNOOPY_POSES[poseIdx];
 
     const cx = width / 2;
-    const cy = height / 2 + 10;
+    // Perfectly centered in the unobstructed canvas between top header and bottom dock
+    const cy = (height - 135 + 70) / 2;
+    const pts = pose.particles || pose.points;
 
-    pose.particles.forEach((item, i) => {
+    pts.forEach((item, i) => {
       if (particles[i]) {
         const tx = cx + item.x * scaleFactor;
         const ty = cy + item.y * scaleFactor;
@@ -455,16 +457,15 @@
 
     ctx.scale(dpr, dpr);
 
-    const minDim = Math.min(width, height);
-    scaleFactor = Math.min(minDim / 550, 1.25);
-    if (width < 450) {
-      scaleFactor = (width / 520) * 0.98;
-    }
+    const availW = Math.max(280, width - 40);
+    const availH = Math.max(280, height - 210);
+    scaleFactor = Math.min(availW / 530, availH / 530, 1.2);
 
     if (window.SNOOPY_POSES && window.SNOOPY_POSES[currentPoseIndex]) {
       const cx = width / 2;
-      const cy = height / 2 + 10;
-      window.SNOOPY_POSES[currentPoseIndex].particles.forEach((item, i) => {
+      const cy = (height - 135 + 70) / 2;
+      const pts = window.SNOOPY_POSES[currentPoseIndex].particles || window.SNOOPY_POSES[currentPoseIndex].points;
+      pts.forEach((item, i) => {
         if (particles[i]) {
           particles[i].tx = cx + item.x * scaleFactor;
           particles[i].ty = cy + item.y * scaleFactor;
@@ -736,8 +737,9 @@
     const expCx = expW / 2;
     const expCy = 940;
     const expScale = 1.95;
+    const pts = pose.particles || pose.points;
 
-    pose.particles.forEach(p => {
+    pts.forEach(p => {
       const px = expCx + p.x * expScale;
       const py = expCy + p.y * expScale;
       const pColor = getThemedColor(p.role, p.color, currentTheme);

@@ -28,13 +28,17 @@
       <div class="brand-meta">
         <div class="brand-seal-row">
           <span class="brand-seal">閻姿桂 印</span>
-          <span class="brand-sub">Kinetic Typography</span>
+          <span class="artwork-badge-pill" id="artwork-badge">ARCHIVE 01 / 07</span>
         </div>
-        <h1 class="brand-title">
-          <span>閻・姿・桂</span>
-          <span class="char-accent">×</span>
-          <span>史奴比</span>
-        </h1>
+        <div class="brand-title-row">
+          <h1 class="brand-title">
+            <span>閻・姿・桂</span>
+            <span class="char-accent">×</span>
+            <span>史奴比</span>
+          </h1>
+          <span class="artwork-curr-title" id="artwork-title">趴臥狗屋白日夢</span>
+        </div>
+        <p class="artwork-curr-quote" id="artwork-quote">「幸福就是……躺在屋頂思考人生的美好哲理。」</p>
       </div>
 
       <div class="header-actions">
@@ -57,43 +61,35 @@
       </div>
     </header>
 
-    <!-- Center Dynamic Artwork Meta Card -->
-    <div class="artwork-meta-card" id="artwork-meta">
-      <div class="artwork-badge" id="artwork-badge">ARCHIVE 01 / 07</div>
-      <h2 class="artwork-title" id="artwork-title">趴臥狗屋白日夢</h2>
-      <p class="artwork-quote" id="artwork-quote">「幸福就是……躺在屋頂思考人生的美好哲理。」</p>
+    <!-- Floating Gesture Hint Pill (Unobtrusive) -->
+    <div class="gesture-tip-pill">
+      <span class="dot"></span>
+      <span id="gesture-text">左右滑動切換造型 ｜ 底部拖曳演進滑桿 ｜ 觸控風動擾動</span>
+    </div>
 
-      <!-- Slow Evolution Timeline Scrubber (從散落到組合成圖案的緩慢演進) -->
+    <!-- Bottom Dock: Completely Non-Obstructive Evolution & Poses -->
+    <footer class="bottom-dock">
+      <!-- Sleek Non-Obstructive Evolution Timeline Bar -->
       <div class="evolution-controller">
-        <div class="evolution-header">
-          <span class="evolution-status" id="evolution-status">✨ 完整組裝 100%</span>
+        <div class="evolution-row">
+          <button class="evo-btn" id="btn-evo-play" title="播放/暫停演進">
+            <svg id="evo-play-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <div class="evo-slider-container">
+            <input type="range" id="evolution-scrubber" min="0" max="100" step="0.2" value="100" aria-label="演進進度滑桿">
+          </div>
+          <button class="evo-btn" id="btn-evo-replay" title="散落重組">
+            <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+          </button>
+          <span class="evolution-status" id="evolution-status">100%</span>
           <div class="evolution-speed-pills">
-            <button class="speed-pill" data-speed="0.5">0.5x 慢速</button>
+            <button class="speed-pill" data-speed="0.5">0.5x</button>
             <button class="speed-pill active" data-speed="1.0">1.0x</button>
             <button class="speed-pill" data-speed="2.0">2.0x</button>
           </div>
         </div>
-
-        <div class="evolution-slider-row">
-          <button class="evo-btn" id="btn-evo-play" title="播放/暫停演進">
-            <svg id="evo-play-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-          </button>
-          <input type="range" id="evolution-scrubber" min="0" max="100" step="0.2" value="100" aria-label="演進進度滑桿">
-          <button class="evo-btn" id="btn-evo-replay" title="散落重組">
-            <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-          </button>
-        </div>
       </div>
-    </div>
 
-    <!-- Floating Gesture Hint Pill -->
-    <div class="gesture-tip-pill">
-      <span class="dot"></span>
-      <span id="gesture-text">左右滑動切換姿勢 ｜ 拖曳滑桿緩慢演進 ｜ 觸摸畫布風動擾動</span>
-    </div>
-
-    <!-- Bottom Dock -->
-    <footer class="bottom-dock">
       <!-- 7 Poses Selection Ribbon -->
       <nav class="pose-nav-ribbon" id="pose-nav" aria-label="史奴比姿勢導覽">
         <!-- Dynamically populated chips -->
