@@ -5,6 +5,9 @@
 > 一個徹底打破傳統網頁框架、專為手機與各類螢幕打造的前衛動力學文字藝術動畫館。  
 > 全站所有史奴比插圖，皆由最純粹的「**閻**」、「**姿**」、「**桂**」三個人名文字動態構建而成！
 
+- 🌐 **公開線上免登入直接體驗網址**：[https://apple595201908.github.io/snoopy-typography-art/](https://apple595201908.github.io/snoopy-typography-art/)
+- 📦 **GitHub 專案庫**：[https://github.com/apple595201908/snoopy-typography-art](https://github.com/apple595201908/snoopy-typography-art)
+
 ---
 
 ## 🌟 核心藝術特色與技術突破
