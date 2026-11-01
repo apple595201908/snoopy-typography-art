@@ -115,23 +115,6 @@ html, body {
   opacity: 0.8;
 }
 
-/* Giant Background Watermark Stamp */
-.bg-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(8rem, 28vw, 24rem);
-  font-weight: 900;
-  color: var(--text-primary);
-  opacity: 0.028;
-  letter-spacing: -0.05em;
-  pointer-events: none;
-  z-index: 0;
-  white-space: nowrap;
-  font-family: var(--font-serif);
-}
-
 /* UI Layout Container */
 .art-ui {
   position: absolute;
@@ -432,40 +415,6 @@ html, body {
   cursor: pointer;
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-}
-
-/* Floating Gesture Hint Pill */
-.gesture-tip-pill {
-  align-self: center;
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.68rem;
-  color: var(--text-secondary);
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: var(--panel-shadow);
-  pointer-events: auto;
-  margin-bottom: 6px;
-}
-
-.gesture-tip-pill span.dot {
-  width: 6px;
-  height: 6px;
-  background: var(--accent-red);
-  border-radius: 50%;
-  display: inline-block;
-  animation: pulseDot 2s infinite;
-}
-
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.4); opacity: 1; }
 }
 
 /* Bottom Controls Section */
@@ -774,10 +723,6 @@ body.brush-mode-active #canvas-stage {
   .pill-tool-btn {
     padding: 5px 8px;
     font-size: 0.7rem;
-  }
-  .gesture-tip-pill {
-    font-size: 0.62rem;
-    padding: 3px 8px;
   }
 }
 
